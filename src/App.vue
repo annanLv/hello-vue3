@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import { reactive, ref } from 'vue'
+import { reactive, ref } from 'vue';
 
 </script>
 
 <template>
   <div class="content">
-    <div class="cc">123aa</div>
+    <div class="cc">123aa647821687436728167486216948621784678912678647281648726178</div>
   </div>
 </template>
 
@@ -16,6 +16,8 @@ import { reactive, ref } from 'vue'
   width:            100px;
   height:           100px;
   background-color: orange;
+  //
+  //word-break: break-word;
 
   .cc {
     width:            40px;
