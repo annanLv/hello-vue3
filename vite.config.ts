@@ -1,7 +1,8 @@
-import { defineConfig } from 'vite'
-import vue from '@vitejs/plugin-vue'
-import legacy from '@vitejs/plugin-legacy'
-import { resolve } from 'path'
+import { resolve } from 'path';
+import { defineConfig } from 'vite';
+import vue from '@vitejs/plugin-vue';
+import legacy from '@vitejs/plugin-legacy';
+import vueSetupExtend from 'vite-plugin-vue-setup-extend';
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -14,6 +15,7 @@ export default defineConfig({
   },
   plugins: [
     vue(),
+    vueSetupExtend(),
     legacy({
       targets: ['defaults', 'not IE 11']
     })
@@ -43,6 +45,6 @@ export default defineConfig({
         // drop_console: true,
         drop_debugger: true
       }
-    },
+    }
   }
-})
+});
