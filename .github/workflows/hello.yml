@@ -29,7 +29,7 @@ jobs: # 任务
         uses: wearerequired/git-mirror-action@master
         env:
           # 注意在 Settings->Secrets 配置 GITEE_RSA_PRIVATE_KEY
-          SSH_PRIVATE_KEY: ${{ GITEE_RSA_PRIVATE_KEY }} # 仓库配置的私钥
+          SSH_PRIVATE_KEY: ${{ secrets.GITEE_RSA_PRIVATE_KEY }} # 仓库配置的私钥
         with:
           # 注意替换为你的 GitHub 源仓库地址
           source-repo: git@github.com:annanLv/hello-vue3.git
