@@ -4,7 +4,7 @@ module.exports = {
     "es2021": true
   },
   "extends": [
-    // "./.eslintrc-auto-import.json", //自动导入组合api
+    "./.eslintrc-auto-import.json", //自动导入组合api
     "eslint:recommended", //开启默认的eslint基础校验
     "plugin:vue/vue3-recommended", //开启eslint-plugin-vue规则校验
     "plugin:vue/vue3-essential", //vue3核心的lint的规则

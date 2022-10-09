@@ -5,6 +5,7 @@ import legacy from '@vitejs/plugin-legacy';
 import vueSetupExtend from 'vite-plugin-vue-setup-extend';
 import AutoImport from 'unplugin-auto-import/vite';
 
+
 // https://vitejs.dev/config/
 export default defineConfig({
   root: './',

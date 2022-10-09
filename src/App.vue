@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { reactive, ref } from 'vue';
+
+let test = ref('1231');
 
 </script>
 
@@ -16,7 +17,7 @@ import { reactive, ref } from 'vue';
   width:            100px;
   height:           100px;
   background-color: orange;
-  //
+  // 只有英文和数字时增加这个完成换行
   //word-break: break-word;
 
   .cc {
