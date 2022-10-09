@@ -1,0 +1,71 @@
+name: Build and Deploy
+
+on: # 事件
+  push:
+    branches:
+      - main #推送到远程分支main之后触发
+jobs: # 任务
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout 🛎️
+        uses: actions/checkout@v2.3.1
+
+      - name: Install and Build 🔧 # 此示例项目使用npm构建，并将结果输出到“build”文件夹。替换为生成项目所需的命令，或者如果站点是预构建的，则完全删除此步骤.
+        run: |
+          npm install   # 先安装依赖
+          npm run build:prod # 执行打包命令
+
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@4.1.6
+        env:
+          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }} # 自己仓库配置的令牌
+        with:
+          branch: gh-pages # 将打包后的目录部署在gh-pages分支
+          folder: dist # 打包后生成的目录地址
+
+      #以下配置同步代码到gitee仓库并自动部署
+      - name: Sync to Gitee
+        uses: wearerequired/git-mirror-action@master
+        env:
+          # 注意在 Settings->Secrets 配置 GITEE_RSA_PRIVATE_KEY
+          SSH_PRIVATE_KEY: ${{ b3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAABlwAAAAdzc2gtcn
+  NhAAAAAwEAAQAAAYEAwAdleASaFIvxL7JvRW3TCbCMSgUsV1wfLiaFyKN9dSyNdsFCB3OJ
+  loxJPGHidtpSOnCWMDHcfh/8kTVDS8UTXxYQajhNRhr5ftyuhwBFqm9XqBzGLByN84+s0M
+  3bngybQHOiotn9jvXiLZm07dllVvMJNBL0CHAVVSYsZoMiSH2DJtN7lpmRzUEnCu1rbmCR
+  xgo+Un8pLmaT6kx83W0BBqD89HSCRkvZcmBFHBL50/t0CYy7ZbMM6hN4lq8CfcZD9TYKey
+  WeFOciodiWjaSUIg+B9FivhsuDrgnVh5B+O1jYk6fhK9PyQLvE59+7eW0o3vfdMMwmKs+L
+  1f4ndHFYzHNVQplA2p4eo99n1fP5DnNdmRrAgxl85D+GnEIuzck/UBPX3MaxfIKtg7LYxm
+  c0X9IR9NS0iiCgjOW61OrbhfpTZ1laKbUuzbyu/EQmfkY3xD7KklL0NqOySxJOizG/AIKt
+  8tyiXbCBM5byXcjqQ29F2sphzVIJzvFPQVOIiN7XAAAFiBoitToaIrU6AAAAB3NzaC1yc2
+  EAAAGBAMAHZXgEmhSL8S+yb0Vt0wmwjEoFLFdcHy4mhcijfXUsjXbBQgdziZaMSTxh4nba
+  UjpwljAx3H4f/JE1Q0vFE18WEGo4TUYa+X7crocARapvV6gcxiwcjfOPrNDN254Mm0Bzoq
+  LZ/Y714i2ZtO3ZZVbzCTQS9AhwFVUmLGaDIkh9gybTe5aZkc1BJwrta25gkcYKPlJ/KS5m
+  k+pMfN1tAQag/PR0gkZL2XJgRRwS+dP7dAmMu2WzDOoTeJavAn3GQ/U2CnslnhTnIqHYlo
+  2klCIPgfRYr4bLg64J1YeQfjtY2JOn4SvT8kC7xOffu3ltKN733TDMJirPi9X+J3RxWMxz
+  VUKZQNqeHqPfZ9Xz+Q5zXZkawIMZfOQ/hpxCLs3JP1AT19zGsXyCrYOy2MZnNF/SEfTUtI
+  ogoIzlutTq24X6U2dZWim1Ls28rvxEJn5GN8Q+ypJS9DajsksSTosxvwCCrfLcol2wgTOW
+  8l3I6kNvRdrKYc1SCc7xT0FTiIje1wAAAAMBAAEAAAGAelw8K93C0JTbeqkYfgUdFG+K9R
+  +WwZPRynaBiPekWaWp/qHmkRjt8yAxCmjVBSbYfqR/Dva2qSd4qI5n80AAt/Y3P3fgxWsq
+  z8uO6jciLRgFovmyzSjkyu4iEGscJfmic887Msn058OF+8iVoXmFOYJjuurY1QeWkEtiv2
+  +PyOExUOwxNCVm4oNBfZULf6nJOYgNbkPY2dhDKGjUp8Ntg+vRQ3N6D5EFXfw6DUmKJ6ly
+  pyMlxgfxkrYVgO7Dh6FtUC4iP+tW118eczjF1cu5FuH+Rq+xp7AMF1YSfzomXuI/gC+x7A
+  /sOqzGOKYwxtRGuAB7v0BW0v1WIHLmvw7VJbPrBWCO/ZjhEmnM+5jQTmPLU5BtoCPQCJ2u
+  L0S6YabvX+1Z0oleAXezZNyarlwDF8CGU1qG6rTXcqaN7J/hLkR3vInk+32kVAFb/URHvS }} # 仓库配置的私钥
+        with:
+          # 注意替换为你的 GitHub 源仓库地址
+          source-repo: git@github.com:annanLv/hello-vue3.git
+          # 注意替换为你的 Gitee 目标仓库地址
+          destination-repo: git@gitee.com:Su_NanV/hello-vue3.git
+
+      - name: Build Gitee Pages
+        uses: yanglbme/gitee-pages-action@main
+        with:
+          # 注意替换为你的 Gitee 用户名
+          gitee-username: Su_NanV
+          # 注意在 Settings->Secrets 配置 GITEE_PASSWORD
+          gitee-password: ${{ secrets.GITEE_PASSWORD }}
+          # 注意替换为你的 Gitee 仓库，仓库名严格区分大小写，请准确填写，否则会出错
+          gitee-repo: Su_NanV/hello-vue3
+          # 要部署的分支，默认是 master，若是其他分支，则需要指定(指定的分支必须存在)
+          branch: gh-pages
