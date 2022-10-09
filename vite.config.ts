@@ -3,6 +3,7 @@ import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
 import legacy from '@vitejs/plugin-legacy';
 import vueSetupExtend from 'vite-plugin-vue-setup-extend';
+import AutoImport from 'unplugin-auto-import/vite';
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -16,6 +17,13 @@ export default defineConfig({
   plugins: [
     vue(),
     vueSetupExtend(),
+    AutoImport({
+      dts: true,
+      imports: ['vue', 'vue-router'],
+      eslintrc: {
+        enabled: true
+      }
+    }),
     legacy({
       targets: ['defaults', 'not IE 11']
     })
