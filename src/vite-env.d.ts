@@ -19,3 +19,20 @@ interface ImportMeta {
 declare interface Window {
   [key: string]: any
 }
+
+
+type BackEndReturn<D = any> = {
+  code: number,
+  message?: string,
+  msg?: string,
+  data?: D
+}
+
+
+type PartialByKeys<T, K extends keyof T> = {
+  [P in K]?: T[P]
+} & Pick<T, Exclude<keyof T, K>>
+
+type Simplify<T> = {
+  [P in keyof T]: T[P]
+}

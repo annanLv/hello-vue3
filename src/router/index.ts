@@ -1,17 +1,17 @@
-import {createRouter, createWebHashHistory, RouterOptions, RouteRecordRaw} from "vue-router";
-const routes: Array<RouteRecordRaw> = []
+import {createRouter, createWebHashHistory, RouterOptions, RouteRecordRaw} from 'vue-router';
+const routes: Array<RouteRecordRaw> = [];
 
 const router = createRouter({
   history: createWebHashHistory('/'),
   routes: routes
-})
+});
 
 
 /**
  * 全局前置路由钩子
  */
 router.beforeEach((to, form, next) => {
-  next()
+  next();
 });
 
 /**
@@ -28,4 +28,4 @@ router.beforeResolve(async to => {});
  */
 router.afterEach((to, from, failure) => {});
 
-export default router
+export default router;

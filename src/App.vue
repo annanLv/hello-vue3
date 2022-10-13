@@ -5,9 +5,7 @@ let test = ref('1231');
 </script>
 
 <template>
-  <div class="content">
-    <div class="cc">123aa647821687436728167486216948621784678912678647281648726178</div>
-  </div>
+  <router-view></router-view>
 </template>
 
 <style scoped lang="scss">

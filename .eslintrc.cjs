@@ -3,6 +3,11 @@ module.exports = {
     "browser": true,
     "es2021": true
   },
+  "globals": {
+    "BackEndReturn": "writable",
+    "PartialByKeys": "writable",
+    "Simplify": "writable"
+  },
   "extends": [
     "./.eslintrc-auto-import.json", //自动导入组合api
     "eslint:recommended", //开启默认的eslint基础校验
